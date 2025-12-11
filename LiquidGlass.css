@@ -3,7 +3,7 @@
 /* 1. KEEP VARIABLES (Required for the glass effect to work) */
 :root {
   --w-color: rgba(20, 20, 20, 0.15);    /* iOS-like transparent tint */
-  --blur: blur(6px) saturate(1500%);    /* iOS-like frosted glass */
+  --blur: blur(16px) saturate(150%);    /* iOS-like frosted glass */
   --border-color: linear-gradient(
       45deg,
       rgba(255, 255, 255, 0.35) 0%,
