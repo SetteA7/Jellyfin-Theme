@@ -33,7 +33,7 @@ select:enabled,
 option {
   background-color: var(--w-color);
   backdrop-filter: var(--blur) !important;
-  -webkit-backdrop-filter: blur(1.5px) saturate(110%) !important;
+  -webkit-backdrop-filter: blur(15px) saturate(110%) !important;
 }
 
 /* 4. BORDER STYLING FOR HEADER AND DRAWER */
