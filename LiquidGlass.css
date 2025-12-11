@@ -1,24 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
-/* ============================
-   1. Global Variables & Base
-   ============================ */
+/* Global Variables - Required for colors and blur to work */
 :root {
-  /* Liquid Glass Core Settings */
-  --w-color: rgba(24, 24, 24, 0.28); /* Increased transparency for better liquid effect */
+  --w-color: #18181849;
   --blur: blur(16px) saturate(180%);
   --border-color: linear-gradient(45deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.1) 41%, rgba(255, 255, 255, 0.1) 57%, rgba(255, 255, 255, 0.3) 100%);
-  
-  /* Backgrounds */
   --bg-color: rgb(24, 24, 24);
-  --card-bg: #101010;
-  --indicator-bg: rgba(16, 16, 16, 0.58);
-  --transparent-bg: rgba(16, 16, 16, 0);
-  
-  /* Layout */
-  --card-gap: 1vw;
+  --indicator-bg: #10101094; /* Kept in case indicators appear in header */
 }
 
+/* Global Styles - Basic Font Setup */
 html {
   background-color: var(--bg-color) !important;
   box-sizing: border-box;
@@ -27,27 +18,19 @@ html {
   padding: 0;
 }
 
-/* ============================
-   2. Liquid Glass UI Elements
-   (Header, Drawer, Action Sheets, Inputs)
-   ============================ */
-
-/* Shared Glass Styles */
+/* Elements with transparency and blur effects (Sidebar & Topbar) */
 .skinHeader.semiTransparent,
 .skinHeader,
 .mainDrawer,
 .actionSheet,
 select:enabled,
-option,
-.nowPlayingBar, 
-.homeLibraryButton,
-.cardOverlayFab-primary {
-  background-color: var(--w-color) !important;
+option {
+  background-color: var(--w-color);
   backdrop-filter: var(--blur) !important;
-  -webkit-backdrop-filter: var(--blur) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
 }
-
-/* Shared Border Gradients */
+ 
+/* Border styling for Sidebar & Topbar */
 .skinHeader,
 .actionSheet,
 .mainDrawer {
@@ -56,16 +39,22 @@ option,
   border-image-source: var(--border-color);
 }
 
-/* Specific Header Tweaks */
+/* Specific styles for Topbar (.skinHeader) */
 .skinHeader {
   border-left: 0;
   border-right: 0;
   border-top: 0;
-  /* border-radius ignored when border-image is active, but kept per request */
-  border-radius: 5px; 
+  border-radius: 5px;
 }
 
-/* OSD/Player Header (No Blur) */
+/* Form elements (often found in settings/headers) */
+select:enabled,
+option {
+  border-style: solid;
+  border-width: 1px;
+}
+
+/* Style for Video Player Header (OSD) */
 .skinHeader-withBackground.osdHeader {
   border: 0;
   -webkit-backdrop-filter: none !important;
@@ -79,520 +68,16 @@ option,
   z-index: 1;
 }
 
-/* Form Elements */
-select:enabled,
-option {
-  border-style: solid;
-  border-width: 1px;
-}
-
-.selectVideoContainer {
-  display: none !important;
-}
-
-/* ============================
-   3. Cards & Lists
-   ============================ */
-
-/* List Items */
-.listItem {
-  transition: 0.3s all ease-in-out;
-}
-
-.listItem:hover {
-  background-color: rgba(0, 165, 220, 0.15);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  backdrop-filter: var(--blur);
-}
-
-/* Main Card Styling */
-.cardBox {
-  background: linear-gradient(var(--card-bg), var(--card-bg)) padding-box,
-              var(--border-color) border-box;
-  border: 1px solid transparent;
-  border-radius: 15px;
-  box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.3);
-  padding: 25px;
-  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
-}
-
-.cardImageContainer {
-  border-top-right-radius: 15px;
-  border-top-left-radius: 15px;
-}
-
-/* Hover Effects */
-.itemsContainer > .card > .cardBox:hover,
-.homeLibraryButton:hover {
-  transform: translateY(-5px);
-  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
-}
-
-.itemsContainer > .card > .cardBox:active,
-.homeLibraryButton:active {
-  transform: translateY(-9px);
-  box-shadow: 12px 12px 20px rgba(0, 0, 0, 0.3);
-}
-
-/* Library Button specific */
-.homeLibraryButton {
-  border-image-source: var(--border-color);
-  background: linear-gradient(var(--card-bg), var(--card-bg)) padding-box,
-              var(--border-color) border-box;
-  border: 1px solid transparent;
-  border-radius: 15px;
-  box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.3);
-  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
-}
-
-.fab:focus, .raised:focus {
-  background: linear-gradient(var(--card-bg), var(--card-bg)) padding-box,
-              var(--border-color) border-box;
-}
-
-/* Card Text */
-.cardText {
-  font-size: large;
-  padding: 2%;
-}
-.cardText-secondary {
-  font-size: small;
-}
-
-/* Remove shadows from specific elements */
-.cardBox:not(.visualCardBox) .cardPadder, 
-.cardContent-shadow {
-  box-shadow: none;
-  background-color: transparent;
-}
-.cardOverlayContainer {
-  background-color: var(--transparent-bg);
-}
-
-/* Items Container Layouts */
-.itemsContainer,
-.itemsContainer.vertical-wrap,
-.itemsContainer:not(.scrollSlider) {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--card-gap);
-  padding-inline: 1.5vw;
-}
-
-/* ============================
-   4. Detail Page & Backdrops
-   ============================ */
-
-.detailPagePrimaryContainer {
-  background-color: var(--transparent-bg);
-  display: inline-table;
-  left: 5%;
-  padding-left: 5%;
-  z-index: 2;
-}
-
-.noBackdropTransparency .detailPagePrimaryContainer {
-  background-color: transparent;
-}
-
-/* Desktop Specific Layout */
-html.preload.layout-desktop {
-  background-color: #181818;
-}
-
-.layout-desktop .detailPageContent,
-.layout-desktop .infoWrapper, 
-.layout-desktop .mainDetailButtons {
-  padding-left: 5%;
-}
-
-.layout-desktop .detailPagePrimaryContent {
-  padding-left: 0;
-  width: 45%;
-}
-
-.layout-desktop .detailPageSecondaryContainer {
-  background-color: var(--transparent-bg);
-  margin: 0 0 1.25em 0;
-}
-
-.layout-desktop .itemDetailsGroup {
-  margin-top: 0;
-}
-
-.layout-desktop .detailLogo {
-  background-position: top left;
-  left: 5%;
-}
-
-/* Backdrop Logic */
-.layout-desktop .itemBackdrop {
-  background-attachment: scroll;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 100vh;
-  position: relative;
-  right: -20%;
-  width: 80vw;
-}
-
-.backdropContainer {
-  height: 100vh;
-  left: 20%;
-  position: absolute;
-  width: 80vw;
-}
-
-/* Complex Background Handling using :has */
-#reactRoot:has(.skinHeader.semiTransparent) > .backgroundContainer.withBackdrop,
-#reactRoot > .skinHeader.semiTransparent + .backgroundContainer.withBackdrop,
-.layout-desktop .backgroundContainer {
-  background-color: transparent;
-  background:
-    linear-gradient(90deg, var(--bg-color), rgba(24, 24, 24, 0) 60%),
-    linear-gradient(360deg, var(--bg-color), rgba(24, 24, 24, 0) 60%);
-  background-size: cover;
-  height: 100vh;
-  margin-left: 20%;
-  position: absolute;
-  width: 80vw;
-}
-
-.layout-desktop .detailPageWrapperContainer {
-  margin-top: -65vh;
-}
-
-/* No Home Button Header Cases */
-.skinHeader:has(.noHomeButtonHeader) .backdropContainer,
-.skinHeader.noHomeButtonHeader .backdropContainer {
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  background-color: rgba(24, 24, 24, 0.28);
-  width: 100vw;
-  left: 0;
-}
-
-.skinHeader:has(.noHomeButtonHeader) .layout-desktop .backgroundContainer,
-.skinHeader.noHomeButtonHeader .layout-desktop .backgroundContainer {
-  display: none;
-}
-
-/* Fullscreen Background Animation */
-#reactRoot:not(:has(.skinHeader.semiTransparent)) > .backgroundContainer.withBackdrop {
-  position: fixed !important;
-  overflow: visible !important;
-  background: none;
-  background-color: rgba(24, 24, 24, 0.28);
-  margin-left: 0;
-  background-size: cover;
-  width: 100vw;
-  left: 0;
-  top: 0;
-  height: 100vh;
-  z-index: 0;
-}
-
-#reactRoot:not(:has(.skinHeader.semiTransparent)) > .backgroundContainer.withBackdrop::before {
-  content: '';
-  position: absolute;
-  top: -40px; right: -40px;
-  bottom: -40px; left: -40px;
-  pointer-events: none;
-  backdrop-filter: blur(30px) saturate(80%) brightness(60%);
-  -webkit-backdrop-filter: blur(30px) saturate(80%) brightness(60%);
-  background: none;
-  background-color: rgba(24, 24, 24, 0.28);
-  z-index: -1; 
-}
-
-#reactRoot:not(:has(.skinHeader.semiTransparent)) > .backdropContainer > .backdropImage {
-  animation-name: parallax; /* Fixed typo from parralax */
-  animation-duration: 1ms; 
-  animation-direction: alternate;
-  animation-timeline: scroll(block nearest);
-}
-
-@keyframes parallax {
-  from { transform: translateY(120px); }
-  to { transform: translateY(-120px); }
-}
-
-#reactRoot:not(:has(.skinHeader.semiTransparent)) > .backdropContainer {
-  height: 100vh;
-  left: 0;
-  position: fixed !important;
-  width: 100vw;
-  animation: BackgroundMove 60s ease-in-out infinite alternate;
-}
-
-@keyframes BackgroundMove {
-  0% { transform: scale(1.3) translateX(0px); }
-  50% { transform: scale(1.5) translateX(-50px); }
-  100% { transform: scale(1.3) translateX(0px); }
-}
-
-/* Hiding Elements on Desktop */
-.layout-desktop .detailImageContainer .card,
-.layout-desktop .itemTags,
-.layout-desktop .itemName.originalTitle {
-  display: none;
-}
-
-.layout-desktop .itemName,
-.layout-mobile .itemName {
-  font-weight: normal;
-}
-
-.layout-desktop a.overview-expand.emby-button {
-  margin: 0;
-  padding: 0;
-}
-
-/* ============================
-   5. Indicators & Floating UI
-   ============================ */
-
-.countIndicator,
-.fullSyncIndicator,
-.mediaSourceIndicator,
-.playedIndicator {
-  backdrop-filter: var(--blur) !important;
-  -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
-  background-color: var(--indicator-bg) !important;
-  box-shadow: none;
-}
-
+/* Hover effects for menu options (Sidebar/Header Navigation) */
 .actionSheetMenuItem:hover,
 .navMenuOption:hover {
-  background-color: rgba(0, 165, 220, 0.15);
+  background-color: #00a5dc28;
 }
 
-/* FAB */
-.cardOverlayFab-primary {
-  background: linear-gradient(rgba(32, 32, 32, 0.1), rgba(32, 32, 32, 0.1)) padding-box,
-              var(--border-color) border-box;
-  background-color: rgba(0, 164, 220, 0.4);
-  border: 2px solid transparent;
-}
-.cardOverlayFab-primary:hover {
-  background: linear-gradient(rgba(0, 164, 220, 0.1), rgba(0, 164, 220, 0.1)) padding-box,
-              var(--border-color) border-box;
-}
-
-/* Progress Bars */
-.itemProgressBarForeground {
-  background-color: rgba(0, 165, 220, 0.58);
-  border-radius: 10px;
-  z-index: 1;
-}
-
-.innerCardFooter > .itemProgressBar {
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  backdrop-filter: var(--blur);
-  background-color: rgba(24, 24, 24, 0.28);
-  border-radius: 10px;
-  margin-bottom: 10px;
-  margin-left: 20px;
-  overflow: hidden;
-  padding: 5px;
-  position: relative;
-  right: 10px;
-}
-
-/* Buttons */
-h2 { font-weight: 700; }
-
-.layout-desktop .btnPlay {
-  background: linear-gradient(var(--card-bg), var(--card-bg)) padding-box,
-              var(--border-color) border-box;
-  border: 1px solid transparent;
-  border-radius: 2em;
-}
-
-.layout-desktop .btnPlay:hover {
-  background-color: rgba(0, 165, 220, 0.15);
-  transform: translateX(5px);
-}
-
-.layout-desktop .btnPlay::after {
-  color: white;
-  content: attr(title);
-  margin: 0 10px 0 2px;
-}
-
-.layout-desktop .btnPlay.detailButton {
-  flex-direction: row;
-}
-
+/* Media Query for hover effects */
 @media (hover: hover) and (pointer: fine) {
   .paper-icon-button-light:hover:not(:disabled) {
-    background-color: rgba(0, 165, 220, 0.07);
-    color: rgba(0, 165, 220, 0.92);
+    background-color: #00a5dc11;
+    color: #00a5dcec;
   }
-}
-
-.raised { border-radius: 4em; }
-#btnShutdown { background-color: #bb4a4a; }
-.paperList { border-radius: 1em; }
-.sliderContainer { height: 1em; }
-
-/* ============================
-   6. Now Playing Bar & Animation
-   ============================ */
-
-.nowPlayingBar {
-  position: fixed;
-  bottom: 1vh;
-  left: 3vw;
-  right: 3vw;
-  height: 7vh;
-  border-radius: 1em;
-  /* Glass effect handled in shared section above */
-  z-index: 1;
-}
-
-.nowPlayingBar::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  border-radius: inherit;
-  background: var(--border-color);
-  padding: 1px; 
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box, 
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-          mask-composite: exclude;
-  z-index: -1;
-}
-
-.nowPlayingBarPositionContainer {
-  top: 3em;
-  left: 30em;
-  right: 30em;
-}
-
-.nowPlayingBarCenter { top: -.04em; }
-.mdl-slider-background-flex { height: .3em !important; }
-
-/* Rotating Vinyl Effect */
-.nowPlayingBar .nowPlayingImage {
-  border-radius: 2em;
-  margin: 1em;
-  height: 3.5em;
-  width: 3.5em;
-  background-size: auto;
-  background-position: initial;
-  animation: rotating 4s linear infinite;
-  -webkit-mask: radial-gradient(circle at center, transparent 20%, black 21%) no-repeat center/100% 100%;
-  mask: radial-gradient(circle at center, transparent 20%, black 21%) no-repeat center/100% 100%;
-  background-clip: padding-box;
-}
-
-.sliderBubble {
-  background-color: #000000; 
-  z-index: 1;
-}
-.sliderBubbleText { font-size: medium; }
-
-@keyframes rotating {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-.nowPlayingPageImage {
-  border-radius: 10em;
-  margin: 1em;
-  height: 15em;
-  width: 15em;
-  background-size: auto;
-  background-position: initial;
-  animation: rotating 4s linear infinite paused;
-  -webkit-mask: radial-gradient(circle at center, transparent 20%, black 21%) no-repeat center/100% 100%;
-  mask: radial-gradient(circle at center, transparent 20%, black 21%) no-repeat center/100% 100%;
-  background-clip: padding-box;
-}
-
-/* Play/Pause Animation State Control */
-.nowPlayingInfoContainer:has(.nowPlayingInfoControls .material-icons.pause_circle_filled) .nowPlayingPageImage,
-.nowPlayingBarTop:has(.nowPlayingBarCenter .material-icons.pause_circle_filled) .nowPlayingImage {
-  animation-play-state: running;
-}
-
-.nowPlayingInfoContainer:has(.nowPlayingInfoControls .material-icons.play_circle_filled) .nowPlayingPageImage,
-.nowPlayingBarTop:has(.nowPlayingBarCenter .material-icons.play_arrow) .nowPlayingImage {
-  animation-play-state: paused;
-}
-
-/* ============================
-   7. Layout Specific Overrides
-   ============================ */
-
-/* Person/TV Images without Backdrop */
-:has(.backgroundContainer:not(.withBackdrop)) .detailImageContainer .card:has(.cardImageIcon.person) {
-  display: block !important;
-  left: 60vw;
-  top: -10vh; /* Fixed typo from -10h */
-  position: absolute;
-  border-radius: 30px;
-}
-
-:has(.backgroundContainer:not(.withBackdrop)) .detailImageContainer .card:has(.cardImageIcon.tv) {
-  display: none !important;
-}
-
-.layout-desktop [dir=ltr] .detailRibbon, 
-.layout-tv [dir=ltr] .detailRibbon {
-  display: contents;
-  padding-left: 0;
-  background: transparent;
-}
-
-.collectionItems,
-.vertical-list,
-#listChildrenCollapsible {
-  width: 90vw;
-}
-
-/* Mobile Specific */
-.layout-mobile [dir=ltr] .infoWrapper {
-  padding-left: 0;
-}
-
-.layout-mobile .detailRibbon {
-  width: 100vw;
-  position: relative;
-  right: 5vw;
-}
-
-.layout-mobile .trackSelections {
-  position: relative;
-  right: 6vw;
-}
-
-.layout-mobile .overflowPortraitCard:not(.scrollSlider) {
-  flex: 0 0 calc((100% - 50px) / 3) !important;
-  width: calc((100% - 50px) / 3) !important;
-  max-width: none !important; 
-  margin: 0 !important; 
-}
-
-.layout-mobile .itemsContainer:not(.scrollSlider) {
-  display: flex !important;   
-  flex-wrap: wrap !important;
-  overflow-y: visible !important; 
-  gap: 10px; 
-  justify-content: flex-start; 
-}
-
-.layout-mobile .detailImageContainer .card {
-  display: none;
-}
-
-.layout-mobile :has(.backgroundContainer:not(.withBackdrop)) .detailImageContainer .card:has(.cardImageIcon.person) {
-  left: 35vw;
-  top: -24vh;
-  bottom: 3vh;
-  border-radius: 0;
 }
