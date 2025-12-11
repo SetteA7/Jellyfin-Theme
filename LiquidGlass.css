@@ -1,30 +1,76 @@
-/* Usiamo :root, html e body per la massima specificità */
-:root, html, body {
-    --activeColor: rgb(255, 0, 0) !important;
-    --activeColorAlpha: rgba(255, 0, 0, 0.9) !important;
-    --uiAccentColor: rgb(255, 0, 0) !important;
-    --btnSubmitColor: rgb(200, 0, 0) !important;
-    --btnSubmitBorderColor: rgb(255, 0, 0) !important;
-    --checkboxCheckedBgColor: rgb(255, 0, 0) !important;
-    --highlightOutlineColor: rgb(255, 0, 0) !important;
+
+/*TOPBAR*/
+.skinHeader {
+    background-color: transparent !important;
+    
+    /* Strong blur and saturation for the liquid feel */
+    backdrop-filter: blur(20px) saturate(120%);
+    -webkit-backdrop-filter: blur(20px) saturate(120%);
+
+    /* Gradient: 
+       - Removed the harsh white start. 
+       - Starts with a softer gloss (10% white) fading into dark. 
+    */
+    background: linear-gradient(
+        to bottom, 
+        rgba(255, 255, 255, 0.1) 0%,  /* Soft gloss at the top */
+        rgba(0, 0, 0, 0.4) 30%,       /* Darker middle for contrast */
+        rgba(0, 0, 0, 0.0) 100%       /* Fade out */
+    ) !important;
+
+    /* REMOVED border-top */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    
+    /* REMOVED top inset shadow. 
+       Only keeping the drop shadow to lift it off the content */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+        
+    z-index: 10 !important; 
 }
 
-/* Override extra per pulsanti di riproduzione e selezione che a volte sfuggono alle variabili */
-.cardOverlayContainer > .cardOverlayFab-primary,
-.listItemImageButton,
-.cardOverlayButton-br > .cardOverlayButtonIcon {
-    background-color: rgb(255, 0, 0) !important;
-    border-color: rgb(255, 0, 0) !important;
+/* Ensure no background overrides appear */
+.skinHeader-withBackground {
+    box-shadow: none !important;
+    background: none !important;
 }
 
+/*SIDEBAR*/
+/* Rimuove lo sfondo solido di default del contenitore principale */
+.mainDrawer {
+    background-color: transparent !important;
+    background: none !important;
+}
 
-/* Esempio: glass‑sidebar */
-.sidebar {
-  background: rgba(255, 255, 255, 0.15);     /* sfondo semi‑trasparente bianco */
-  backdrop-filter: blur(10px) saturate(180%);
-  -webkit-backdrop-filter: blur(10px) saturate(180%); /* Safari / WebKit fallback */
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 10px;                        /* arrotonda gli angoli */
-  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2),
-              inset 0 4px 20px rgba(255, 255, 255, 0.3);
+/* Applica l'effetto vetro al contenuto scorrevole della sidebar */
+.mainDrawer .scrollContainer {
+    background-color: transparent !important;
+    
+    /* Stesso blur e saturazione della topbar per coerenza */
+    backdrop-filter: blur(20px) saturate(120%);
+    -webkit-backdrop-filter: blur(20px) saturate(120%);
+    
+    /* Gradiente leggermente diverso: diagonale per dare volume */
+    background: linear-gradient(
+        135deg, 
+        rgba(255, 255, 255, 0.05) 0%,   /* Riflesso leggero in alto a sinistra */
+        rgba(0, 0, 0, 0.4) 50%,         /* Parte centrale scura per leggere il menu */
+        rgba(0, 0, 0, 0.6) 100%         /* Fondo scuro */
+    ) !important;
+
+    /* Bordo destro sottile per staccare il vetro dal contenuto principale */
+    border-right: 1px solid rgba(255, 255, 255, 0.15);
+    
+    /* Nessun bordo sopra/sotto/sinistra per evitare le linee grigie buggate */
+    border-top: none !important;
+    border-bottom: none !important;
+    border-left: none !important;
+
+    /* Ombra esterna verso destra */
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Opzionale: Nasconde la scrollbar grigia nativa che rovina l'effetto vetro */
+.mainDrawer .scrollContainer::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
 }
