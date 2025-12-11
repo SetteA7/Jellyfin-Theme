@@ -1,15 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
-/* Global Variables - Required for colors and blur to work */
+/* Global Variables */
 :root {
   --w-color: #18181849;
   --blur: blur(16px) saturate(180%);
   --border-color: linear-gradient(45deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.1) 41%, rgba(255, 255, 255, 0.1) 57%, rgba(255, 255, 255, 0.3) 100%);
   --bg-color: rgb(24, 24, 24);
-  --indicator-bg: #10101094; /* Kept in case indicators appear in header */
+  --indicator-bg: #10101094;
 }
 
-/* Global Styles - Basic Font Setup */
+/* Global Styles */
 html {
   background-color: var(--bg-color) !important;
   box-sizing: border-box;
@@ -18,7 +18,10 @@ html {
   padding: 0;
 }
 
-/* Elements with transparency and blur effects (Sidebar & Topbar) */
+/* CORE BLUR LOGIC
+   Questa sezione è critica per iOS. Include sia la sintassi standard 
+   che quella -webkit- specifica.
+*/
 .skinHeader.semiTransparent,
 .skinHeader,
 .mainDrawer,
@@ -30,7 +33,7 @@ option {
   -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
 }
  
-/* Border styling for Sidebar & Topbar */
+/* Border styling */
 .skinHeader,
 .actionSheet,
 .mainDrawer {
@@ -39,7 +42,7 @@ option {
   border-image-source: var(--border-color);
 }
 
-/* Specific styles for Topbar (.skinHeader) */
+/* Header Specifics */
 .skinHeader {
   border-left: 0;
   border-right: 0;
@@ -47,14 +50,14 @@ option {
   border-radius: 5px;
 }
 
-/* Form elements (often found in settings/headers) */
+/* Form elements within headers/drawers */
 select:enabled,
 option {
   border-style: solid;
   border-width: 1px;
 }
 
-/* Style for Video Player Header (OSD) */
+/* OSD Header (Video Player) */
 .skinHeader-withBackground.osdHeader {
   border: 0;
   -webkit-backdrop-filter: none !important;
@@ -68,13 +71,34 @@ option {
   z-index: 1;
 }
 
-/* Hover effects for menu options (Sidebar/Header Navigation) */
+/* CONDITIONAL HEADER BLUR FIXES
+   Questi blocchi erano mancanti. Gestiscono l'effetto sfocatura quando
+   la testata cambia stato (es. pagine interne senza tasto home).
+   Essenziali per la consistenza grafica su iOS.
+*/
+.skinHeader:has(.noHomeButtonHeader) .backdropContainer {
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: #18181849;
+  width: 100vw;
+  left: 0;
+}
+
+.skinHeader.noHomeButtonHeader .backdropContainer {
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: #18181849;
+  width: 100vw;
+  left: 0;
+}
+
+/* Interaction States for Sidebar/Menus */
 .actionSheetMenuItem:hover,
 .navMenuOption:hover {
   background-color: #00a5dc28;
 }
 
-/* Media Query for hover effects */
+/* Media Query for hover inputs */
 @media (hover: hover) and (pointer: fine) {
   .paper-icon-button-light:hover:not(:disabled) {
     background-color: #00a5dc11;
