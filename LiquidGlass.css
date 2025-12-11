@@ -2,14 +2,9 @@
 
 /* 1. KEEP VARIABLES (Required for the glass effect to work) */
 :root {
-  --w-color: rgba(20, 20, 20, 0.15);    /* iOS-like transparent tint */
-  --blur: blur(16px) saturate(150%);    /* iOS-like frosted glass */
-  --border-color: linear-gradient(
-      45deg,
-      rgba(255, 255, 255, 0.35) 0%,
-      rgba(255, 255, 255, 0.12) 50%,
-      rgba(255, 255, 255, 0.25) 100%
-  );
+  --w-color: #18181810;
+  --blur: blur(16px) saturate(180%);
+  --border-color: linear-gradient(45deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.1) 41%, rgba(255, 255, 255, 0.1) 57%, rgba(255, 255, 255, 0.3) 100%);
   --bg-color: rgb(24, 24, 24);
 }
 
@@ -33,7 +28,7 @@ select:enabled,
 option {
   background-color: var(--w-color);
   backdrop-filter: var(--blur) !important;
-  -webkit-backdrop-filter: blur(15px) saturate(110%) !important;
+  -webkit-backdrop-filter: blur(1.5px) saturate(110%) !important;
 }
 
 /* 4. BORDER STYLING FOR HEADER AND DRAWER */
