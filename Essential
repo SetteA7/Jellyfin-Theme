@@ -1,0 +1,31 @@
+.adminDrawerLogo img { content:url(
+https://media.tenor.com/4zaciOeXzOAAAAAj/umi-spinning-umi.gif
+) !important; } imgLogoIcon { content: url(
+https://media.tenor.com/4zaciOeXzOAAAAAj/umi-spinning-umi.gif
+) !important; } .pageTitleWithLogo { background-image: url(
+https://media.tenor.com/4zaciOeXzOAAAAAj/umi-spinning-umi.gif
+) !important; }
+
+
+/* Add custom h2 header before the login form */
+#loginPage form::after {
+  content: "Se hai dimenticato la password vai su:";
+  display: block;
+  font-size: 2em;  /* You can adjust the size */
+  font-weight: bold;
+  color: #333;     /* Change text color as needed */
+  margin-bottom: 20px; /* Adjust the margin to control spacing */
+  text-align: center; /* Center the text */
+}
+
+/* Smaller text styling */
+#loginPage form::after {
+  content: "Se hai dimenticato la password vai su:\A https://vabbebeddiamo.ddns.net/reset";
+  display: block;
+  font-size: 0.8em;  /* Smaller text */
+  color: #777;      /* Lighter color for smaller text */
+  text-align: center;
+  margin-top: 10px;  /* Adds spacing between the header and the smaller text */
+  margin-bottom: 20px;  /* Adds bottom margin if needed */
+  white-space: pre-line; /* Makes line breaks work */
+}*/
