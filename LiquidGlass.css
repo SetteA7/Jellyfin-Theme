@@ -5,9 +5,9 @@
   /* Regola l'alfa (0.25) per rendere il vetro più o meno trasparente */
   --glass-bg: rgba(20, 20, 20, 0.25); 
   /* Saturate alto crea l'effetto "Liquid" accentuando i colori dietro */
-  --glass-filter: blur(20px) saturate(180%);
+  --glass-filter: blur(200px) saturate(180%);
   /* Bordo sottile bianco semitrasparente per dare spessore al vetro */
-  --glass-border: 1px solid rgba(255, 255, 255, 0.15);
+  --glass-border: 10px solid rgba(255, 255, 255, 0.15);
   /* Ombra interna per effetto profondità */
   --glass-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
