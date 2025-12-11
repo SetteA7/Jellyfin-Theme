@@ -1,71 +1,144 @@
-/* 1. CONFIGURAZIONE FONT E VARIABILI */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+/* ================================================= */
+/* CORE LAYOUT & RESET                   */
+/* ================================================= */
 
-:root {
-  /* Regola l'alfa (0.25) per rendere il vetro più o meno trasparente */
-  --glass-bg: rgba(20, 255, 20, 1); 
-  /* Saturate alto crea l'effetto "Liquid" accentuando i colori dietro */
-  --glass-filter: blur(200px) saturate(180%);
-  /* Bordo sottile bianco semitrasparente per dare spessore al vetro */
-  --glass-border: 10px solid rgba(255, 255, 255, 0.15);
-  /* Ombra interna per effetto profondità */
-  --glass-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+html {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-body, html, h1, h2, h3, h4 {
-  font-family: "Inter", sans-serif !important;
-}
+/* ================================================= */
+/* TOPBAR (HEADER) & SIDEBAR             */
+/* ================================================= */
 
-/* IMPORTANTE: Rimuove lo sfondo solido predefinito di Jellyfin per permettere al vetro di funzionare */
-.backgroundContainer.withBackdrop {
-    background-color: transparent !important;
-}
-
-/* 2. TOPBAR (HEADER) - STILE VETRO */
+/* Structural adjustments for the Header */
 .skinHeader {
-  background: var(--glass-bg) !important;
-  backdrop-filter: var(--glass-filter) !important;
-  -webkit-backdrop-filter: var(--glass-filter) !important; /* Supporto Safari */
-  border-bottom: var(--glass-border);
-  box-shadow: var(--glass-shadow);
-  color: #eee;
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  border-radius: 5px;
 }
 
-/* Rimuove lo sfondo scuro che Jellyfin applica quando scorri la pagina */
-.skinHeader-withBackground {
-  background-color: var(--glass-bg) !important; 
+/* OSD Header (On-Screen Display) positioning */
+.skinHeader-withBackground.osdHeader {
+  border: 0;
+  height: 7.5em;
+  pointer-events: none;
+  position: relative;
+  z-index: 1;
 }
 
-/* 3. SIDEBAR (DRAWER) - STILE VETRO */
-.mainDrawer {
-  background: var(--glass-bg) !important;
-  backdrop-filter: var(--glass-filter) !important;
-  -webkit-backdrop-filter: var(--glass-filter) !important;
-  border-right: var(--glass-border);
-  box-shadow: var(--glass-shadow);
+/* Sidebar / Drawer / Actions specific structure */
+.skinHeader,
+.mainDrawer,
+.actionSheet {
+  /* Retains the structural border logic without the visual style */
+  border: 1px solid transparent; 
+  border-image-slice: 1;
 }
 
-/* Correzione per il contenitore interno della sidebar */
-.mainDrawer-scrollContainer {
-    background-color: transparent !important;
+/* Hide specific dropdown container often redundant in themes */
+.selectVideoContainer {
+  display: none !important;
 }
 
-/* 4. FINESTRE DI DIALOGO / POPUP (Opzionale, per coerenza) */
-.actionSheet, .dialog {
-    background: rgba(30, 30, 30, 0.75) !important;
-    backdrop-filter: blur(25px) saturate(150%) !important;
-    border: var(--glass-border);
-    border-radius: 12px !important;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+/* ================================================= */
+/* CONTAINER LAYOUTS                     */
+/* ================================================= */
+
+/* Essential Grid/Flex layout for library items */
+.itemsContainer {
+  display: flex;
+  gap: 1vw; /* Retained gap logic from variables */
+  padding-inline: 1.5vw;
 }
 
-/* 5. SELECT / INPUT (Stile semplificato per evitare errori) */
-select {
-    background: rgba(0, 0, 0, 0.3) !important;
-    border: 1px solid rgba(255,255,255,0.1) !important;
-    backdrop-filter: blur(10px);
-    color: white !important;
-    border-radius: 4px;
+.itemsContainer.vertical-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1vw;                
+  padding-inline: 1.5vw;     
 }
 
-/* NOTA: Non stiliamo <option> perché non è supportato dai browser moderni con backdrop-filter */
+.itemsContainer:not(.scrollSlider) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1vw;
+  padding-inline: 1.5vw;
+}
+
+/* ================================================= */
+/* DESKTOP SPECIFIC LAYOUT               */
+/* ================================================= */
+
+/* Adjusts content padding when sidebar is present on desktop */
+.layout-desktop .detailPageContent,
+.layout-desktop .infoWrapper, 
+.layout-desktop .mainDetailButtons {
+  padding-left: 5%;
+}
+
+.layout-desktop .detailPagePrimaryContent {
+  padding-left: 0;
+  width: 45%;
+}
+
+.layout-desktop .detailPagePrimaryContainer {
+  display: inline-table;
+  left: 5%;
+  padding-left: 5%;
+  z-index: 2;
+}
+
+.layout-desktop .detailPageSecondaryContainer {
+  margin: 0 0 1.25em 0;
+}
+
+/* ================================================= */
+/* NOW PLAYING BAR POSITIONING           */
+/* ================================================= */
+
+/* Retains the floating bar structure without the visual glass style */
+.nowPlayingBar {
+  position: fixed;
+  bottom: 1vh;
+  left: 3vw;
+  right: 3vw;
+  height: 7vh;
+  border-radius: 1em;
+  z-index: 1;
+}
+
+.nowPlayingBarPositionContainer {
+  top: 3em;
+  left: 30em;
+  right: 30em;
+}
+
+.nowPlayingBarCenter {
+  top: -.04em;
+}
+
+/* ================================================= */
+/* MISC UTILITIES                        */
+/* ================================================= */
+
+/* Hides desktop specific detail elements that clutter the UI */
+.layout-desktop .detailImageContainer .card,
+.layout-desktop .itemTags,
+.layout-desktop .itemName.originalTitle {
+  display: none;
+}
+
+/* Fix for slider container height */
+.sliderContainer {
+  height: 1em;
+}
+
+/* Collection width fixes */
+.collectionItems,
+.vertical-list,
+#listChildrenCollapsible {
+  width: 90vw;
+}
