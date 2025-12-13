@@ -18,25 +18,4 @@
     /* critical: do NOT touch position / z-index */
 }
 
-.skinHeader {
-    background-clip: padding-box;
-}
-
-.skinHeader {
-    background-image:
-        linear-gradient(
-            to bottom,
-            rgba(255,255,255,0.10),
-            rgba(255,255,255,0.02)
-        ),
-        repeating-linear-gradient(
-            45deg,
-            rgba(255,255,255,0.02) 0px,
-            rgba(255,255,255,0.02) 1px,
-            transparent 1px,
-            transparent 2px
-        ),
-        rgba(20,20,20,0.45);
-}
-
 /*TODO SPECULAR HIGHLIGHTS*/
