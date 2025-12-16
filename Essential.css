@@ -1,10 +1,15 @@
-.adminDrawerLogo img { content:url(
+/*.adminDrawerLogo img { content:url(
 https://media.tenor.com/4zaciOeXzOAAAAAj/umi-spinning-umi.gif
 ) !important; } imgLogoIcon { content: url(
 https://media.tenor.com/4zaciOeXzOAAAAAj/umi-spinning-umi.gif
 ) !important; } .pageTitleWithLogo { background-image: url(
 https://media.tenor.com/4zaciOeXzOAAAAAj/umi-spinning-umi.gif
-) !important; }
+) !important; }*/
+
+.adminDrawerLogo img { content:url(
+https://imgur.com/a/glPF8L5) !important; } imgLogoIcon { content: url(
+https://imgur.com/a/glPF8L5) !important; } .pageTitleWithLogo { background-image: url(
+https://imgur.com/a/glPF8L5) !important; }
 
 
 /* Add custom h2 header before the login form */
