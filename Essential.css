@@ -1,11 +1,3 @@
-/*.adminDrawerLogo img { content:url(
-https://media.tenor.com/4zaciOeXzOAAAAAj/umi-spinning-umi.gif
-) !important; } imgLogoIcon { content: url(
-https://media.tenor.com/4zaciOeXzOAAAAAj/umi-spinning-umi.gif
-) !important; } .pageTitleWithLogo { background-image: url(
-https://media.tenor.com/4zaciOeXzOAAAAAj/umi-spinning-umi.gif
-) !important; }*/
-
 /* Add custom h2 header before the login form */
 #loginPage form::after {
   content: "Se hai dimenticato la password vai su:";
