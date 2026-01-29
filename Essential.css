@@ -6,12 +6,6 @@ https://media.tenor.com/4zaciOeXzOAAAAAj/umi-spinning-umi.gif
 https://media.tenor.com/4zaciOeXzOAAAAAj/umi-spinning-umi.gif
 ) !important; }*/
 
-.adminDrawerLogo img { content:url(
-https://i.imgur.com/wZU6rdo.png) !important; } imgLogoIcon { content: url(
-https://i.imgur.com/wZU6rdo.png) !important; } .pageTitleWithLogo { background-image: url(
-https://i.imgur.com/wZU6rdo.png) !important; }
-
-
 /* Add custom h2 header before the login form */
 #loginPage form::after {
   content: "Se hai dimenticato la password vai su:";
